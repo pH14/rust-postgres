@@ -503,6 +503,11 @@ impl Error {
         Error::new(Kind::Connect, Some(Box::new(e)))
     }
 
+    #[allow(dead_code)]
+    pub(crate) fn timeout(e: io::Error) -> Error {
+        Error::new(Kind::Timeout, Some(Box::new(e)))
+    }
+
     #[doc(hidden)]
     pub fn __private_api_timeout() -> Error {
         Error::new(Kind::Timeout, None)
