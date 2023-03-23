@@ -40,8 +40,10 @@ pub(crate) async fn connect_socket(
 
                 let sock_ref = SockRef::from(&stream);
 
+                println!("User timeout: {:?}", user_timeout);
                 #[cfg(target_os = "linux")]
                 {
+                    println!("Setting Linux socket timeout to: {:?}", user_timeout);
                     sock_ref
                         .set_tcp_user_timeout(user_timeout)
                         .map_err(Error::timeout)?;
